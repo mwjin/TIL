@@ -59,18 +59,23 @@ def make_filename(title: str) -> str:
     return filename
 
 
-def get_parent_title(curr_path: list):
+def get_title(file_path: str) -> str:
+    title = ''
+    with file_path.open() as f:
+        for line in f:
+            if line.startswith('title'):
+                title = line.strip().split(': ')[1]
+                break
+    return title
+
+
+def get_parent_title(curr_path: list) -> str:
     parent_title = ''
     if curr_path:
         parent_dir_path = Path('/'.join(curr_path))
         parent_filename = curr_path[-1]
         parent_file_path = parent_dir_path / f'{parent_filename}.md'
-        with parent_file_path.open() as f:
-            for line in f:
-                if line.startswith('title'):
-                    parent_title = line.strip().split(': ')[1]
-                    break
-
+        parent_title = get_title(parent_file_path)
     return parent_title
 
 
