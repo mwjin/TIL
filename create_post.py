@@ -102,46 +102,49 @@ def create_file(curr_path: list, nav_order: int, create_dir: bool = False) -> st
     return filename
 
 
+def cli(cursor: dict):
+    cursor_stack = [cursor]
+    curr_path = []
+
+    while True:
+        print(f'Current location: /{"/".join(curr_path)}')
+        content_cnt = count_contents(cursor)
+        print(f'Current No. Contents: {content_cnt}')
+        print_contents(cursor)
+
+        directory = choose_directory(cursor)
+        if directory == '.':
+            mode = choose_mode()
+            if mode == 'f':
+                filename = create_file(curr_path, content_cnt + 1)
+                if cursor.get('_posts') is None:
+                    cursor['_posts'] = []
+                cursor['_posts'].append(filename)
+            elif mode == 'd':
+                dirname = create_file(curr_path, content_cnt + 1, True)
+                cursor[dirname] = {}
+        elif directory == '..':
+            if len(curr_path) == 0:
+                print('Current location is the root.')
+            else:
+                cursor_stack.pop()
+                curr_path.pop()
+                cursor = cursor_stack[-1]
+        elif directory == 'q':
+            break
+        else:
+            cursor = cursor.get(directory)
+            cursor_stack.append(cursor)
+            curr_path.append(directory)
+        print()
+
+
 def main():
     json_path = Path('posts.json')
     json_data = load_json(json_path)
 
-    cursor = json_data
-    cursor_stack = [cursor]
-    curr_path = []
-
     try:
-        while True:
-            print(f'Current location: /{"/".join(curr_path)}')
-            content_cnt = count_contents(cursor)
-            print(f'Current No. Contents: {content_cnt}')
-            print_contents(cursor)
-
-            directory = choose_directory(cursor)
-            if directory == '.':
-                mode = choose_mode()
-                if mode == 'f':
-                    filename = create_file(curr_path, content_cnt + 1)
-                    if cursor.get('_posts') is None:
-                        cursor['_posts'] = []
-                    cursor['_posts'].append(filename)
-                elif mode == 'd':
-                    dirname = create_file(curr_path, content_cnt + 1, True)
-                    cursor[dirname] = {}
-            elif directory == '..':
-                if len(curr_path) == 0:
-                    print('Current location is the root.')
-                else:
-                    cursor_stack.pop()
-                    curr_path.pop()
-                    cursor = cursor_stack[-1]
-            elif directory == 'q':
-                break
-            else:
-                cursor = cursor.get(directory)
-                cursor_stack.append(cursor)
-                curr_path.append(directory)
-            print()
+        cli(json_data)
     except:
         print('Some error has occured.')
         raise
