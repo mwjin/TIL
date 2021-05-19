@@ -2,6 +2,7 @@
 layout: default
 title: Minimum Spanning Tree
 parent: Greedy Algorithms
+grand_parent: Algorithms
 nav_order: 1
 ---
 # Minimum Spanning Tree
