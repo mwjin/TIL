@@ -69,19 +69,28 @@ def get_title(file_path: str) -> str:
     return title
 
 
-def get_parent_title(curr_path: list) -> str:
+def get_parent_title(curr_path: list) -> (str, str):
     parent_title = ''
-    if curr_path:
+    grand_title = ''
+    
+    if len(curr_path) > 1:  # Ignore 'posts' directory
         parent_dir_path = Path('/'.join(curr_path))
         parent_filename = curr_path[-1]
         parent_file_path = parent_dir_path / f'{parent_filename}.md'
         parent_title = get_title(parent_file_path)
-    return parent_title
+
+        if len(curr_path) > 2:
+            grand_dir_path = parent_dir_path.parent
+            grand_filename = curr_path[-2]
+            grand_file_path = grand_dir_path / f'{grand_filename}.md'
+            grand_title = get_title(grand_file_path)
+
+    return (parent_title, grand_title)
 
 
 def create_file(curr_path: list, nav_order: int, create_dir: bool = False) -> str:
     title = input('Enter the file title: ')
-    parent_title = get_parent_title(curr_path)
+    parent_title, grand_title = get_parent_title(curr_path)
     filename = make_filename(title)
     file_dir_path = Path('/'.join(curr_path))
 
@@ -97,6 +106,8 @@ def create_file(curr_path: list, nav_order: int, create_dir: bool = False) -> st
         print(f'title: {title}', file=post_f)
         if parent_title:
             print(f'parent: {parent_title}', file=post_f)
+        if grand_title:
+            print(f'grand_parent: {grand_title}', file=post_f)
         print(f'nav_order: {nav_order}', file=post_f)
         if create_dir:
             print('has_children: true', file=post_f)
@@ -109,7 +120,7 @@ def create_file(curr_path: list, nav_order: int, create_dir: bool = False) -> st
 
 def cli(cursor: dict):
     cursor_stack = [cursor]
-    curr_path = []
+    curr_path = ['posts']
 
     while True:
         print(f'Current location: /{"/".join(curr_path)}')
