@@ -45,10 +45,11 @@ def choose_directory(cursor: dict) -> str:
         print(f'The directory "{directory}" does not exists.')
 
 
-def choose_mode() -> str:
-    valid_mode = {'f', 'd', 'q'}
+def choose_mode(only_file: True) -> str:
+    valid_mode = {'f', 'q'} if only_file else {'f', 'd', 'q'}
     while True:
-        mode = input('Choose the mode (file(f), directory(d), quit(q)): ')
+        mode = input('Choose the mode (file(f), quit(q)): ') if only_file else\
+               input('Choose the mode (file(f), directory(d), quit(q)): ')
         if mode in valid_mode:
             return mode
         print(f'The mode "{mode}" is invalid.')
@@ -121,6 +122,7 @@ def create_file(curr_path: list, nav_order: int,
 
 def cli(cursor: dict, curr_path: list):
     cursor_stack = [cursor]
+    only_file = False
 
     while True:
         print(f'Current location: /{"/".join(curr_path)}')
@@ -128,9 +130,12 @@ def cli(cursor: dict, curr_path: list):
         print(f'Current No. Contents: {content_cnt}')
         print_contents(cursor)
 
+        if len(curr_path) == 3:
+            only_file = True
         directory = choose_directory(cursor)
+
         if directory == '.':
-            mode = choose_mode()
+            mode = choose_mode(only_file)
             if mode == 'f':
                 filename = create_file(curr_path, content_cnt + 1)
                 if cursor.get('_posts') is None:
