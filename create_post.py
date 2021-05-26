@@ -88,7 +88,8 @@ def get_parent_title(curr_path: list) -> (str, str):
     return (parent_title, grand_title)
 
 
-def create_file(curr_path: list, nav_order: int, create_dir: bool = False) -> str:
+def create_file(curr_path: list, nav_order: int,
+                create_dir: bool = False) -> str:
     title = input('Enter the file title: ')
     parent_title, grand_title = get_parent_title(curr_path)
     filename = make_filename(title)
@@ -118,9 +119,8 @@ def create_file(curr_path: list, nav_order: int, create_dir: bool = False) -> st
     return filename
 
 
-def cli(cursor: dict):
+def cli(cursor: dict, curr_path: list):
     cursor_stack = [cursor]
-    curr_path = ['posts']
 
     while True:
         print(f'Current location: /{"/".join(curr_path)}')
@@ -158,9 +158,11 @@ def cli(cursor: dict):
 def main():
     json_path = Path('posts.json')
     json_data = load_json(json_path)
+    cursor = json_data['posts']  # 'posts' is a root directory.
+    curr_path = ['posts']
 
     try:
-        cli(json_data)
+        cli(cursor, curr_path)
     except:
         print('Some error has occured.')
         raise
