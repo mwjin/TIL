@@ -23,6 +23,10 @@ def print_contents(cursor: dict):
             print(f'- {category}')
 
 
+def print_err(msg: str):
+    print(f'[ERROR] {msg}')
+
+
 def count_contents(cursor: dict) -> int:
     cnt = len(cursor)
     posts = cursor.get('_posts')
@@ -42,7 +46,7 @@ def choose_directory(cursor: dict) -> str:
            or directory == '..' \
            or directory == 'q':
             return directory
-        print(f'The directory "{directory}" does not exists.')
+        print_err(f'The directory "{directory}" does not exists.')
 
 
 def choose_mode(only_file: True) -> str:
@@ -52,7 +56,7 @@ def choose_mode(only_file: True) -> str:
                input('Choose the mode (file(f), directory(d), quit(q)): ')
         if mode in valid_mode:
             return mode
-        print(f'The mode "{mode}" is invalid.')
+        print_err(f'The mode "{mode}" is invalid.')
 
 
 def make_filename(title: str) -> str:
@@ -145,8 +149,8 @@ def cli(cursor: dict, curr_path: list):
                 dirname = create_file(curr_path, content_cnt + 1, True)
                 cursor[dirname] = {}
         elif directory == '..':
-            if len(curr_path) == 0:
-                print('Current location is the root.')
+            if len(curr_path) == 1:
+                print_err('Current location is the root.')
             else:
                 cursor_stack.pop()
                 curr_path.pop()
@@ -169,7 +173,7 @@ def main():
     try:
         cli(cursor, curr_path)
     except:
-        print('Some error has occured.')
+        print_err('Some error has occured.')
         raise
     finally:
         with json_path.open('w') as json_f:
