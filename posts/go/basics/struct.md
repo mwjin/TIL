@@ -65,8 +65,37 @@ nav_order: 1
     ```
 * [Effective Go](https://golang.org/doc/effective_go#composite_literals)에 따르면, Go에서는 C와는 달리 첫번째 constructor처럼 함수 내의 local variable address를 return 하는 형태가 허용된다.
 
-## 추가해야 할 목록
-* struct의 method와 receiver의 개념
+## Methods
+* Go의 struct에 대해서도 다른 객체 지향 언어의 class 처럼 method를 정의할 수 있다.
+* 일반적인 Go 언어의 함수들과는 달리 정의 단계에서 **Receiver**를 명시한다.
+    ```go
+    func (p Person) GetName() {
+        return p.name;
+    }
+    ```
+    위 정의에서 ``` (p Person) ``` 에 해당하는 부분을 receiver 라고 한다.
+    
+* 위와 같이 정의한 후 다음과 같이 사용한다.
+    ```go
+    personName := person1.GetName()
+    ```
+* Method를 이용해서 private field의 값에 접근(getter)하거나 변경(setter)할 수 있다.
+* Go에서는 이와 같은 method pattern을 권장한다.
+
+### Receiver
+* Receiver는 크게 두 가지 타입이 있다.
+  * Value receiver
+  * Pointer receiver
+* Pointer receiver는 receiver로 받아 오는 변수의 type이 pointer로 명시되어 있다.
+    ```go
+    // Value Receiver
+    func (p Person) GetName() {...}
+
+    // Pointer Receiver
+    func (p *Person) SetName(string name) {...}
+    ```
+* Value, pointer receiver는 대상이 되는 객체를 각각 call-by-value, call-by-reference로 불러온다.
+* 때문에 단순한 객체의 값을 참조하는 method를 정의하고자 할 때는 value receiver를, 객체 내의 값을 변경하는 method를 정의하고자 할 때는 pointer receiver가 적절하다.
 
 ## 추가적으로 알아야 할 것
 * Go에서는 왜 함수 내 local variable의 주소를 return 해도 괜찮은가?
