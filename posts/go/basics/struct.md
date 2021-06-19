@@ -3,7 +3,7 @@ layout: default
 title: struct
 parent: Basics
 grand_parent: Go
-nav_order: 1
+nav_order: 2
 ---
 # struct
 ## Basic

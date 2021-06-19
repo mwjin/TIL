@@ -1,1 +1,1 @@
-{"posts": {"_posts": ["../index.md"], "algorithms": {"greedy_algorithms": {"_posts": ["minimum_spanning_tree"]}}, "go": {"basics": {"_posts": ["struct"]}}}}
+{"posts": {"_posts": ["../index.md"], "algorithms": {"greedy_algorithms": {"_posts": ["minimum_spanning_tree"]}}, "go": {"basics": {"_posts": ["module", "struct"]}}}}
