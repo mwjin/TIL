@@ -23,6 +23,11 @@ def print_contents(cursor: dict):
             print(f'- {category}')
 
 
+def print_order(list_: list):
+    for i, item in enumerate(list_):
+        print(f'{i + 1}. {item}')
+
+
 def print_err(msg: str):
     print(f'[ERROR] {msg}')
 
@@ -32,8 +37,8 @@ def count_contents(cursor: dict) -> int:
     posts = cursor.get('_posts')
 
     if posts:
-        cnt -= 1
-        cnt += len(posts)
+        cnt -= 1  # Do not count '_posts'
+        cnt += len(posts)  # Count the number of posts instead
 
     return cnt
 
@@ -141,11 +146,23 @@ def cli(cursor: dict, curr_path: list):
         if directory == '.':
             mode = choose_mode(only_file)
             if mode == 'f':
-                filename = create_file(curr_path, content_cnt + 1)
                 if cursor.get('_posts') is None:
                     cursor['_posts'] = []
+                posts = cursor['_posts']
+
+                if posts:
+                    print('===== Current posts =====')
+                    print_order(posts)
+
+                filename = create_file(curr_path, content_cnt + 1)
                 cursor['_posts'].append(filename)
             elif mode == 'd':
+                dirs = list(filter(lambda x: x != '_posts', cursor.keys()))
+
+                if dirs:
+                    print('===== Current directories =====')
+                    print_order(dirs)
+
                 dirname = create_file(curr_path, content_cnt + 1, True)
                 cursor[dirname] = {}
         elif directory == '..':
