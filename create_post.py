@@ -64,6 +64,23 @@ def choose_mode(only_file: True) -> str:
         print_err(f'The mode "{mode}" is invalid.')
 
 
+def choose_index(list_) -> int:
+    if list_:
+        while True:
+            try:
+                index = int(input(f'Choose the index (1 ~ f{len(list_) + 1}: '))
+                if 1 <= index <= len(list_) + 1:
+                    return index
+                else:
+                    print_err(f'Your index "{index}" is out of the valid '
+                              f'range.')
+            except ValueError:
+                print_err(f'The index "{index}" is invalid. '
+                          f'It may be not a number')
+
+    return 1
+
+
 def make_filename(title: str) -> str:
     filename = '_'.join(title.lower().split())
     return filename
@@ -190,11 +207,11 @@ def main():
     try:
         cli(cursor, curr_path)
     except:
-        print_err('Some error has occured.')
+        print_err('Some error has occurred.')
         raise
     finally:
         with json_path.open('w') as json_f:
-            json.dump(json_data, json_f)
+            json.dump(json_data, json_f, indent=2)
 
 
 if __name__ == '__main__':
