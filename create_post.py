@@ -115,8 +115,8 @@ def get_parent_title(curr_path: list) -> (str, str):
     return (parent_title, grand_title)
 
 
-def create_file(curr_path: list, nav_order: int,
-                create_dir: bool = False) -> str:
+def write_file(curr_path: list, nav_order: int, 
+               create_dir: bool = False) -> str:
     title = input('Enter the file title: ')
     parent_title, grand_title = get_parent_title(curr_path)
     filename = make_filename(title)
@@ -146,6 +146,33 @@ def create_file(curr_path: list, nav_order: int,
     return filename
 
 
+def create_file(cursor: dict, curr_path: list):
+    if cursor.get('_posts') is None:
+        cursor['_posts'] = []
+    posts = cursor['_posts']
+
+    if posts:
+        print('===== Current posts =====')
+        print_order(posts)
+
+    nav_order = choose_index(posts)
+    filename = write_file(curr_path, nav_order)
+    cursor['_posts'].append(filename)
+
+
+def create_dir(cursor: dict, curr_path: list):
+    dirs = list(filter(lambda x: x != '_posts', cursor.keys()))
+
+    if dirs:
+        print('===== Current directories =====')
+        print_order(dirs)
+
+    dir_idx = choose_index(dirs)
+    nav_order = len(cursor.get('_posts', [])) + dir_idx
+    dirname = write_file(curr_path, nav_order, True)
+    cursor[dirname] = {}
+
+
 def cli(cursor: dict, curr_path: list):
     cursor_stack = [cursor]
     only_file = False
@@ -163,25 +190,9 @@ def cli(cursor: dict, curr_path: list):
         if directory == '.':
             mode = choose_mode(only_file)
             if mode == 'f':
-                if cursor.get('_posts') is None:
-                    cursor['_posts'] = []
-                posts = cursor['_posts']
-
-                if posts:
-                    print('===== Current posts =====')
-                    print_order(posts)
-
-                filename = create_file(curr_path, content_cnt + 1)
-                cursor['_posts'].append(filename)
+                create_file(cursor, curr_path)
             elif mode == 'd':
-                dirs = list(filter(lambda x: x != '_posts', cursor.keys()))
-
-                if dirs:
-                    print('===== Current directories =====')
-                    print_order(dirs)
-
-                dirname = create_file(curr_path, content_cnt + 1, True)
-                cursor[dirname] = {}
+                create_dir(cursor, curr_path)
         elif directory == '..':
             if len(curr_path) == 1:
                 print_err('Current location is the root.')
