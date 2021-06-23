@@ -68,7 +68,7 @@ def choose_index(list_) -> int:
     if list_:
         while True:
             try:
-                index = int(input(f'Choose the index (1 ~ f{len(list_) + 1}: '))
+                index = int(input(f'Choose the index (1 ~ {len(list_) + 1}): '))
                 if 1 <= index <= len(list_) + 1:
                     return index
                 else:
