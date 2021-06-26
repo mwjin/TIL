@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+from os import path
 
 from pathlib import Path
 
@@ -115,18 +116,25 @@ def get_parent_title(curr_path: list) -> (str, str):
     return (parent_title, grand_title)
 
 
+def get_file_path(curr_path: list, filename: str, is_dir: bool = False) -> Path:
+    file_dir_path = Path('/'.join(curr_path))
+    if is_dir:
+        file_dir_path = file_dir_path / filename
+    file_path = file_dir_path / f'{filename}.md'
+    
+    return file_path
+
+
 def write_file(curr_path: list, nav_order: int, 
                create_dir: bool = False) -> str:
     title = input('Enter the file title: ')
     parent_title, grand_title = get_parent_title(curr_path)
     filename = make_filename(title)
-    file_dir_path = Path('/'.join(curr_path))
+    file_path = get_file_path(curr_path, filename, create_dir)
+    file_dir_path = file_path.parent
 
     if create_dir:
-        file_dir_path = file_dir_path / filename
         file_dir_path.mkdir()
-
-    file_path = file_dir_path / f'{filename}.md'
 
     with file_path.open('w') as post_f:
         print('---', file=post_f)
