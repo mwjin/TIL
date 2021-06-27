@@ -122,7 +122,7 @@ def get_file_path(curr_path: list, filename: str, is_dir: bool = False) -> Path:
         file_dir_path = file_dir_path / filename
     file_path = file_dir_path / f'{filename}.md'
     
-    return file_path
+    return file_path.resolve()
 
 
 def write_file(curr_path: list, nav_order: int, 
@@ -154,6 +154,51 @@ def write_file(curr_path: list, nav_order: int,
     return filename
 
 
+def update_cursor(cursor: dict, curr_path: list, nav_order: int,
+                  filename: str, is_dir: bool = False):
+    posts = cursor.get('_posts', [])
+    dirs = list(cursor.keys())[1:]  # Remove '_posts'
+
+    if is_dir:
+        dir_idx = nav_order - 1 - len(posts)
+        dirs.insert(dir_idx, filename)
+        cursor[filename] = {}
+        for i in range(dir_idx + 1, len(dirs)):
+            other_dirname = dirs[i]
+            file_path = get_file_path(curr_path, other_dirname, True)
+            increase_nav_order(file_path)
+            print(file_path)
+            # Reordering
+            other_posts = cursor[other_dirname]
+            del cursor[other_dirname]
+            cursor[other_dirname] = other_posts
+    else:
+        posts.insert(nav_order - 1, filename)
+        for i in range(nav_order, len(posts)):
+            other_filename = posts[i]
+            file_path = get_file_path(curr_path, other_filename)
+            increase_nav_order(file_path)
+        for dirname in dirs:
+            file_path = get_file_path(curr_path, dirname, True)
+            increase_nav_order(file_path)
+        cursor['_posts'] = posts
+
+
+def increase_nav_order(file_path: Path):
+    newlines = []
+    with file_path.open('r') as in_f:
+        for line in in_f:
+            if line.startswith('nav_order'):
+                header, nav_order = line.rstrip('\n').split(' ')
+                nav_order = int(nav_order) + 1
+                newlines.append(f'{header} {nav_order}')
+            else:
+                newlines.append(line.rstrip('\n'))
+    with file_path.open('w') as out_f:
+        for line in newlines:
+            print(line, file=out_f)
+
+
 def create_file(cursor: dict, curr_path: list):
     if cursor.get('_posts') is None:
         cursor['_posts'] = []
@@ -165,7 +210,7 @@ def create_file(cursor: dict, curr_path: list):
 
     nav_order = choose_index(posts)
     filename = write_file(curr_path, nav_order)
-    cursor['_posts'].append(filename)
+    update_cursor(cursor, curr_path, nav_order, filename)
 
 
 def create_dir(cursor: dict, curr_path: list):
@@ -178,7 +223,7 @@ def create_dir(cursor: dict, curr_path: list):
     dir_idx = choose_index(dirs)
     nav_order = len(cursor.get('_posts', [])) + dir_idx
     dirname = write_file(curr_path, nav_order, True)
-    cursor[dirname] = {}
+    update_cursor(cursor, curr_path, nav_order, dirname, True)
 
 
 def cli(cursor: dict, curr_path: list):
