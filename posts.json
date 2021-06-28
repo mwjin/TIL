@@ -18,6 +18,12 @@
         ]
       }
     },
-    "cpp": {}
+    "cpp": {
+      "basics": {
+        "_posts": [
+          "constructor"
+        ]
+      }
+    }
   }
 }
