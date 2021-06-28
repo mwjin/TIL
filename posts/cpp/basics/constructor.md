@@ -8,7 +8,7 @@ nav_order: 1
 # Constructor
 ## 배경
 다음과 같이 정의된 클래스가 있다고 하자.
-```c++
+```cpp
 class Date {
     int year;
     int month;
@@ -18,7 +18,7 @@ public:
 }
 ```
 그리고 다음과 같이 Date 클래스의 객체를 생성했다고 하자.
-```c++
+```cpp
 Date date;
 ```
 위의 경우 date의 year, month와 같은 속성값이 어떤 값으로 정의되어 있는지 확신할 수 없다는 문제가 있다. 속성값을 명시적으로 정의하기 위해 ``SetDate``를 정의하였으나, 이와 같이 객체를 생성할 때마다 ``SetDate``를 호출하는 것은 매우 번거로운 일일 것이다.
@@ -30,7 +30,7 @@ Date date;
 * 자동으로 호출되어 객체의 속성값을 초기화한다.
 * 정의 시 별도의 return 값을 명시하지 않는다.
 * 예시
-```c++
+```cpp
 // 클래스 내부에서 정의 시
 public:
     Date(int year_, int month_, int day_) {
@@ -45,7 +45,7 @@ Date::Date(int year_, int month_, int day_) {
 * 생성자가 정의되어 있다면 명시된 생성자 형태로 밖에 호출이 불가하다.
   * 즉 위와 같이 정의된 경우 ``Date date;`` 와 같이 객체 생성 불가.
 * 사용 방법
-```c++
+```cpp
 Date day1(2021, 6, 28);  // 암시적 방법
 Date day2 = Date(2021, 6, 28);  // 명시적 방법
 ```
@@ -54,7 +54,7 @@ Date day2 = Date(2021, 6, 28);  // 명시적 방법
 * 인자를 받지 않는 생성자.
 * 명시적 또는 암묵적인 방법으로 정의할 수 있다.
 * 다음과 같이 정의 (명시적)
-```c++
+```cpp
 // 클래스 내부에서 정의 시
 public:
     Date() {
@@ -75,7 +75,7 @@ public:
     Date() = default;
 ```
 * 사용 방법
-```c++
+```cpp
 Date day1;  // 암시적 방법
 Date day2 = Date();  // 명시적 방법
 Date day3();  // 이와 같은 방법으로 사용 불가 (함수를 정의한 것으로 인식)
