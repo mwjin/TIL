@@ -19,4 +19,4 @@ permalink: /
 
 ## Notice
 * 부족하거나 잘못된 정보는 아래 Github Page에 이슈 게시 부탁드립니다.
-<br> :octocat: [Github Page](https://github.com/mwjjeong/TIL)
+<br> [mwjjeong/TIL](https://github.com/mwjjeong/TIL)
