@@ -1,5 +1,5 @@
 # TIL
-:page_with_curl: [Today I learned](https://github.com/mwjjeong/TIL)
+:page_with_curl: [Today I learned](https://mwjjeong.github.io/TIL/)
 ## 소개
 * 현재 관심 있게 공부하고 있는 것 또는 공부했던 것들을 적는 공간입니다.
 * 이미 배웠던 것을 다시 구글링 하지 않도록 잘 기록해두는 것을 목표로 합니다. 
@@ -11,4 +11,4 @@
 * 꼭 하루에 한 번 커밋을 하지는 않지만 최대한 빈도를 높게 유지합니다.
 
 ## Notice
-* 부족하거나 잘못된 정보가 있다면 issues 등록 부탁드립니다.
+* 부족하거나 잘못된 정보가 있다면 [Issues](https://github.com/mwjjeong/TIL/issues) 탭에 등록 부탁드립니다.
