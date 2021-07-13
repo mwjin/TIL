@@ -10,7 +10,10 @@ nav_order: 2
 * Go는 정적 타입 언어이다.
 * 일반적으로 변수 또는 상수 선언 시 타입 명시를 꼭 해줘야 한다.
 * 그러나 변수에 대해 타입을 명시하지 않아도 컴파일러가 알아서 유추해주는 경우도 있다.
-
+* Go는 **강타입 언어**이다.
+    * 암묵적인 type conversion을 허용하지 않는다.
+    * Type conversion을 위해서는 `type()` 형태의 함수를 사용해야 한다.
+    * e.g. `int()`, `float64()` 
 ## Variable
 ### Local
 * 가장 정석인 방법은 아래와 같이 변수를 정의하는 것이다.
@@ -36,6 +39,21 @@ nav_order: 2
     var a, b int
     a = 1
     b = 2
+    ```
+* 변수 선언의 여러 가지 형태 예시
+    ```go
+    package main
+
+    import "fmt"
+
+    func main() {
+        var a int = 3
+        var b int
+        var c = 4
+        d := 5
+
+        fmt.Println(a, b, c, d)
+    }
     ```
 ### Global
 * Function body 외에서 정의되는 variable (global variable)은 다음과 같이 무조건 선언문으로서 작성될 수 있다.
