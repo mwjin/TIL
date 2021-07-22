@@ -76,8 +76,7 @@ def choose_index(list_) -> int:
                     print_err(f'Your index "{index}" is out of the valid '
                               f'range.')
             except ValueError:
-                print_err(f'The index "{index}" is invalid. '
-                          f'It may be not a number')
+                print_err(f'The index is invalid. It may be not a number')
 
     return 1
 
