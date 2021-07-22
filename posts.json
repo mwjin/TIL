@@ -15,7 +15,8 @@
         "_posts": [
           "module",
           "variable_and_constant",
-          "struct"
+          "struct",
+          "if_statement"
         ]
       }
     },
