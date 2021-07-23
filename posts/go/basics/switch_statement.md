@@ -34,8 +34,7 @@ nav_order: 5
         ...
     }
     ```
-* 위의 case 문에 대한 value는 꼭 literal이 아닌 다른 expression 들도 올 수 있다.
-* 다음과 같이 작성하면 `true` 값을 가지는 특정 case 에 명시된 구문들만 실행할 수 있다.
+* 다음과 같이 작성하면 `true` 값을 가지는 case 문에 값 대신 조건문을 넣을 수 있다.
     ```go
     switch true {
     case a > 10 && b < 20:
@@ -46,6 +45,7 @@ nav_order: 5
         ...
     }
     ```
+    위 case 문 중 가장 먼저 `true`가 되는 case 문을 실행한뒤 switch 문을 빠져 나온다. 
 * `switch true {}`는 `switch {}`와 같이 `true`를 생략해서 작성 가능하다.
 * if 문과 유사하게 switch 문법에서도 어떤 변수에 대한 init statement를 삽입할 수 있다.
     ```go
