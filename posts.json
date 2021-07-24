@@ -17,7 +17,8 @@
           "variable_and_constant",
           "struct",
           "if_statement",
-          "switch_statement"
+          "switch_statement",
+          "loop"
         ]
       }
     },
