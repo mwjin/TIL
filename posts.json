@@ -18,7 +18,8 @@
           "struct",
           "if_statement",
           "switch_statement",
-          "loop"
+          "loop",
+          "array"
         ]
       }
     },
