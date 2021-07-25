@@ -17,13 +17,19 @@ nav_order: 3
         languages   []string
     }
     ```
-* 위와 같이 정의하고 나면 다음과 같은 방식으로 struct type의 변수를 정의할 수 있다.
+* 위와 같이 정의하고 나면 다음과 같은 방식으로 struct type의 변수를 초기화 할 수 있다.
     ```go
     // Implicit field declaration
     person1 := Person{"Minwoo Jeong", 26, []string{"Python", "C", "Go"}}
 
     // Explicit field declaration
-    person2 := Person{
+    var person2 Person
+    person2.name = "John"
+    person2.age = 15
+    person3.languages = []string{"C++", "Python"}
+
+    // Or
+    person3:= Person{
 		name:      "Anonymous",
 		age:       15,
 		languages: []string{"Java", "Javascript"}}
@@ -34,6 +40,53 @@ nav_order: 3
     ```go
     // In other package...
     personName := person1.name  // Impossible!
+    ```
+
+## 구조체를 포함하는 구조체
+* 구조체 정의 시 또 다른 구조체를 포함시킬 수 있다.
+* 구조체를 포함할 수 있는 방법은 크게 두 가지가 있다.
+    * 내장 타입
+        ```go
+        type Location struct {
+            city        string
+            distinct    string
+        }
+        type Person struct {
+            name        string
+            age         int
+            location    Location
+        }
+        ```
+    * 포함된 필드
+        ```go
+        // 위와 같은 Location 정의 방식
+        type Person struct {
+            name    string
+            age     int
+            Location
+        }
+        ```
+        * 이 경우 Person type의 변수에서 Location의 필드값에 접근할 때 `.`를 한 번만 써도 접근이 가능하다.
+        * 마치 `Location`의 필드가 모두 `Person`에 포함되는 것과 유사하다.
+        * 단 두 구조체 사이 **중복된 필드**가 있는 경우 `변수.구조체.필드` 와 `변수.필드` 와 같은 방식으로 구분해야 한다.
+
+## 구조체 크기
+* C와 같은 방식으로 구조체의 크기가 결정된다.
+* 특정 필드의 크기가 n byte인 경우, n의 배수에 해당하는 메모리 주소에 해당 필드의 값이 위치한다. 이는 컴퓨터가 데이터에 효과적으로 접근하기 위한 **메모리 정렬** 방식이다.
+* 위 규칙을 유지하기 위해 메모리 상에서 필드값 뒤에 빈 공간이 padding 되는 경우가 존재한다.
+* 이러한 규칙 때문에 필드를 어떻게 정렬하는가에 따라 구조체의 크기가 바뀔 수 있으니 유의해야 한다.
+    ```go
+    type t1 struct {
+        n1 int8
+        n2 int
+        n3 int8
+    }  // 24 bytes
+
+    type t2 struct {
+        n1 int8
+        n2 int8
+        n3 int
+    }  // 16 bytes
     ```
 
 ## Constructor
