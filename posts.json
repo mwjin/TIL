@@ -29,6 +29,13 @@
           "constructor"
         ]
       }
+    },
+    "web": {
+      "html": {
+        "_posts": [
+          "basics"
+        ]
+      }
     }
   }
 }
