@@ -37,6 +37,11 @@
           "basics"
         ]
       }
+    },
+    "mysql": {
+      "_posts": [
+        "coding_test_practice"
+      ]
     }
   }
 }
