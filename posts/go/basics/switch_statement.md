@@ -3,7 +3,7 @@ layout: default
 title: Switch Statement
 parent: Basics
 grand_parent: Go
-nav_order: 5
+nav_order: 6
 ---
 # Switch statement
 ## Concept

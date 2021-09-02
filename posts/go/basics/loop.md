@@ -3,7 +3,7 @@ layout: default
 title: Loop
 parent: Basics
 grand_parent: Go
-nav_order: 6
+nav_order: 7
 ---
 # Loop
 ## Introduction

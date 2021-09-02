@@ -3,7 +3,7 @@ layout: default
 title: Pointer
 parent: Basics
 grand_parent: Go
-nav_order: 8
+nav_order: 9
 ---
 
 # Pointer

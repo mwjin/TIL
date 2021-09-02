@@ -3,7 +3,7 @@ layout: default
 title: Array
 parent: Basics
 grand_parent: Go
-nav_order: 7
+nav_order: 8
 ---
 # Array
 ## Basics

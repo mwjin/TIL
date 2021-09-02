@@ -3,7 +3,7 @@ layout: default
 title: If statement
 parent: Basics
 grand_parent: Go
-nav_order: 4
+nav_order: 5
 ---
 # If statement
 * If 문의 개념 및 용법 자체는 타 언어와 같다.
