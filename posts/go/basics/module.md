@@ -1,6 +1,6 @@
 ---
 layout: default
-title: module
+title: Module
 parent: Basics
 grand_parent: Go
 nav_order: 1

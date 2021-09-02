@@ -1,6 +1,6 @@
 ---
 layout: default
-title: struct
+title: Struct
 parent: Basics
 grand_parent: Go
 nav_order: 3
