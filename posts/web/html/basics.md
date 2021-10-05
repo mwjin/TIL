@@ -25,6 +25,12 @@ nav_order: 1
   - 웹 브라우저는 이 태그를 인지하면 _HTML5 specification_(?) 을 통해 해당 파일을 렌더링한다.
 - `<html>`
   - 모든 HTML element 들의 **root**가 되는 태그. 본격적인 HTML 작성의 시작을 알린다.
+  - HTML 문서 상의 언어를 명시하기 위해 `lang` attribute를 사용할 수 있다.
+    ```html
+    <html lang="en">
+      ...
+    </html>
+    ```
 - `<head>`
   - 웹 브라우저 상에 렌더링 되지는 않지만 웹 화면을 구성하기 위해 필요한 정보들을 포함하는 태그.
   - 대표적으로 Page title, CSS에 대한 link, 그 외 meta 정보들이 있다.
@@ -40,10 +46,11 @@ nav_order: 1
 - HTML을 구성하는 요소들로, 일반적으로 다음과 같은 형태로 되어 있다.
 
   ```html
-  <tag>My Content</tag>
+  <tag key1=value1 key2=value2 ...>My Content</tag>
   ```
 
-  위에서 `<tag>`를 **Opening tag**, `</tag>`를 **Closing tag**, 가운데 `My Content`를 **Content**라고 지칭한다.
+  * 위에서 `<tag>`를 **Opening tag**, `</tag>`를 **Closing tag**, 가운데 `My Content`를 **Content**라고 지칭한다.
+  * 위의 `key=value`와 같은 정보를 HTML element의 **attribute**라고 한다. Attribute는 HTML element를 묘사하기 위한 정보이다.
 
 - `<img>`, `<meta>`와 같이 closing tag, content가 없는 element 또한 존재한다.
 
@@ -107,4 +114,44 @@ nav_order: 1
       ```html
       <h2>Introduction</h2>
       <p>This is my <em>first</em> ....</p>
+      ```
+  - `<img>`
+    - HTML에서 이미지를 표시하기 위한 tag
+    - Content와 closing tag가 없는 special element
+    - 이미지에 대한 정보 표시를 위해 HTML tag의 *attributes*을 이용한다.
+    - **대표적인 attributes**
+      - `src`: 이미지 경로
+      - `alt`: 이미지에 대한 설명으로, 웹 상의 유저들을 위한 필수적인 정보이다.
+      - `width`: 가로 길이로 단위는 *pixel*
+      - `height`: 세로 길이로 단위는 *pixel*
+    - 예시
+      ```html
+      <img src="../cat.jpg" alt="My cat" width="50" height="50">
+      ```
+  - `<meta>`
+    - HTML 문서의 meta 정보를 명시하기 위한 tag
+    - HTML의 `<head>`의 content로 주로 작성한다.
+    - `<img>` 태그와 마찬가지로 content, closing tag가 없다.
+    - 대표적인 attribute로 `charset` 이 있다.
+    - 예시
+      ```html
+      <head>
+        <meta charset="utf-8">
+      </head>
+      ```
+  - `<a>`
+    - HTML 문서 내에 *타 웹사이트 문서 또는 내부 HTML 문서를 link* 하기 위한 tag
+    - `a`는 anchor 라는 뜻이다.
+    - link로서 동작하기 위해서는 `href` attribute가 **반드시 명시되어 있어야 한다**.
+    - `href="#"`을 해두면 link 처럼 보이지만 클릭 시 페이지 맨 위로 이동한다.
+    - 예시
+      ```html
+      <!-- 외부 페이지 -->
+      <a href="www.example.com/text">My Web Link</a>
+
+      <!-- 내부 페이지 -->
+      <a href="post.html">My post</a>
+
+      <!-- 아무것도 가리키지 않을 때 -->
+      <a href="#">Empty</a>
       ```
