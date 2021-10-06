@@ -36,7 +36,8 @@
     "web": {
       "html": {
         "_posts": [
-          "basics"
+          "basics",
+          "html_semantics"
         ]
       }
     },
