@@ -41,6 +41,13 @@
         ]
       }
     },
+    "javascript": {
+      "fundamentals": {
+        "_posts": [
+          "type_conversion_and_coercion"
+        ]
+      },
+    },
     "mysql": {
       "_posts": [
         "coding_test_practice"

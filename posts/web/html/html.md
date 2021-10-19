@@ -4,7 +4,7 @@ title: HTML
 parent: Web
 nav_order: 1
 has_children: true
-permalink: //Users/mwjeong/blog/TIL/posts/web/html
+permalink: /posts/web/html
 ---
 
 # HTML

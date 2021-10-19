@@ -1,8 +1,8 @@
 ---
 layout: default
 title: MySQL
-nav_order: 6
+nav_order: 7
 has_children: true
-permalink: //Users/mwjeong/blog/TIL/posts/mysql
+permalink: /posts/mysql
 ---
 # MySQL
