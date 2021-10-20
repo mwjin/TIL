@@ -44,9 +44,10 @@
     "javascript": {
       "fundamentals": {
         "_posts": [
+          "type",
           "type_conversion_and_coercion"
         ]
-      },
+      }
     },
     "mysql": {
       "_posts": [
