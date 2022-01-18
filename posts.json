@@ -22,7 +22,8 @@
           "switch_statement",
           "loop",
           "array",
-          "pointer"
+          "pointer",
+          "package"
         ]
       }
     },
