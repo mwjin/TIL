@@ -23,6 +23,7 @@
           "loop",
           "array",
           "pointer",
+          "string",
           "package"
         ]
       }
