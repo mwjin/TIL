@@ -106,3 +106,17 @@ var slice2 = make([]int, 3, 5)  // Len: 3, Cap: 5
     slice2 := append(slice1, 4)
     ```
   - `append` 연산 과정에서 `Len`이 `Cap`을 초과하는 경우 더 큰 `Cap`을 가진 (일반적으로 2배) slice가 새로 만들어진다.
+
+## Slicing
+
+```go
+array[start:end]
+```
+
+- 배열의 일부를 잡아내는 기능
+- 위와 같이 작성 시 `start` index 부터 `end - 1` index 까지의 요소들을 나타내는 slice가 반환.
+- 배열을 새로 만드는 것이 아니라 **배열의 일부를 포인터로 가리키고 있는 것임에 유의**
+- Output으로 나오는 slice의 내부 값
+  - `Data`: `array`의 `start` 인덱스를 가리키고 있는 포인터
+  - `Len`: `end` - `start`
+  - `Cap`: 실제 `array` 길이 - `start`
