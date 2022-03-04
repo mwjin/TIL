@@ -24,7 +24,8 @@
           "array",
           "pointer",
           "string",
-          "package"
+          "package",
+          "slice"
         ]
       }
     },
