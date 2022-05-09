@@ -43,6 +43,11 @@
           "basics",
           "html_semantics"
         ]
+      },
+      "css": {
+        "_posts": [
+          "fundamentals"
+        ]
       }
     },
     "javascript": {
