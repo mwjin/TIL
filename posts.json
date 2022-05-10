@@ -56,6 +56,11 @@
           "type",
           "type_conversion_and_coercion"
         ]
+      },
+      "data_structures": {
+        "_posts": [
+          "operators"
+        ]
       }
     },
     "mysql": {
