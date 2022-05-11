@@ -64,7 +64,8 @@
       },
       "function_advanced": {
         "_posts": [
-          "default_parameters"
+          "default_parameters",
+          "passing_arguments"
         ]
       }
     },
