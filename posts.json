@@ -61,6 +61,11 @@
         "_posts": [
           "operators"
         ]
+      },
+      "function_advanced": {
+        "_posts": [
+          "default_parameters"
+        ]
       }
     },
     "mysql": {
