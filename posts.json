@@ -77,6 +77,11 @@
           "declaration",
           "aliasing"
         ]
+      },
+      "function": {
+        "_posts": [
+          "call_signature"
+        ]
       }
     },
     "mysql": {
