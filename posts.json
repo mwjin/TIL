@@ -80,7 +80,8 @@
       },
       "function": {
         "_posts": [
-          "call_signature"
+          "call_signature",
+          "overloading"
         ]
       }
     },
