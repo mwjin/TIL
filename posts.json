@@ -81,7 +81,8 @@
       "function": {
         "_posts": [
           "call_signature",
-          "overloading"
+          "overloading",
+          "polymorphism"
         ]
       }
     },
