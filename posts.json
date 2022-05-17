@@ -82,7 +82,8 @@
         "_posts": [
           "call_signature",
           "overloading",
-          "polymorphism"
+          "polymorphism",
+          "generic"
         ]
       }
     },
