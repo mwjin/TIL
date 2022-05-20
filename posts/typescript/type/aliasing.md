@@ -8,6 +8,8 @@ nav_order: 2
 
 # Aliasing
 
+## Concept
+
 다음과 같이 같은 type의 두 object가 있다고 하자.
 
 ```typescript
@@ -38,4 +40,17 @@ const player2: Player = { name: "Minho Jeong" };
 ```typescript
 type Age = number;
 type Name = string;
+```
+
+## Index Signature
+
+Object의 type을 aliasing 할 때 key로 들어올 값은 정해져 있지 않지만 type은 정해져 있는 경우 다음과 같이 명시할 수 있다.
+
+```typescript
+type Player = { [key: string]: string };
+
+const player: Player = {};
+player.a = "a";
+player["b"] = "b";
+player[1] = "c"; // Error
 ```
