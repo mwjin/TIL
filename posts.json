@@ -86,7 +86,11 @@
           "generic"
         ]
       },
-      "class": {}
+      "class": {
+        "_posts": [
+          "basic"
+        ]
+      }
     },
     "mysql": {
       "_posts": [
