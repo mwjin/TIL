@@ -85,7 +85,8 @@
           "polymorphism",
           "generic"
         ]
-      }
+      },
+      "class": {}
     },
     "mysql": {
       "_posts": [
