@@ -53,3 +53,57 @@ const player: { name: string } = {
   name: "Minwoo Jeong",
 };
 ```
+
+## Function
+
+다음과 같이 선언할 수 있다.
+
+- **Function Declaration**
+
+  ```typescript
+  function func(a: T1): T2 {
+    ...
+  }
+  ```
+
+- **Function Expression**
+
+  ```typescript
+  const func = function (a: T1): T2 {
+    ...
+  }
+
+  ```
+
+- **Arror Function**
+  ```typescript
+  const func = (a: T1): T2 => {
+    ...
+  }
+  ```
+
+Argument type에 아무것도 명시하지 않는 경우 해당 argument type은 `any`가 된다.
+
+```typescript
+// a -> 'any' type
+function func(a): T2 {
+  ...
+}
+```
+
+Return type에 아무것도 명시하지 않은 경우
+
+- `return` 절이 있는 경우 해당 expression을 바탕으로 유치
+- `return` 절이 없는 경우 `void`
+
+```typescript
+// Return type -> string
+function func1(a: string) {
+  return a;
+}
+
+// Return type -> void
+function func2(a: string) {
+  console.log(a);
+}
+```
