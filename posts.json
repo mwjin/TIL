@@ -89,7 +89,8 @@
       "class": {
         "_posts": [
           "basic",
-          "abstract_class"
+          "abstract_class",
+          "generic"
         ]
       }
     },
