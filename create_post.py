@@ -145,7 +145,7 @@ def write_file(curr_path: list, nav_order: int,
             print(f'grand_parent: {grand_title}', file=post_f)
         print(f'nav_order: {nav_order}', file=post_f)
         if create_dir:
-            permalink = f"/{'/'.join(curr_path)}"
+            permalink = f"/{'/'.join(curr_path)}/{filename}"
             print('has_children: true', file=post_f)
             print(f'permalink: {permalink}', file=post_f)
         print('---', file=post_f)
