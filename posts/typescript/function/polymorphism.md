@@ -10,7 +10,8 @@ nav_order: 3
 
 ## Concept
 
-- 함수에서의 polymorphism은 한 가지 형태의 함수가 여러 type을 가질 수 있는 것을 의미한다.
+- 함수에서의 polymorphism은 한 함수가 여러 형태로 호출될 수 있는 것을 의미한다.
+- 예를 들어 한 함수가 여러 type의 인자와 리턴값을 가질 수 있다.
 - Overloading은 polymorphism의 한 종류로 볼 수 있다.
 
 ## Example
