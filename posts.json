@@ -48,7 +48,8 @@
         "_posts": [
           "fundamentals",
           "conflict_between_selectors",
-          "inheritance"
+          "inheritance",
+          "universal_selector"
         ]
       }
     },
