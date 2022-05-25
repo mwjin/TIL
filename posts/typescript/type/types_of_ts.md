@@ -78,6 +78,16 @@ const t: [string, number, boolean] = ["Minwoo Jeong", 1, true];
     t[0] = "Minho"; // Not allowed
     ```
 
+  - Class property
+
+    ```typescript
+    class Word {
+      constructor(public readonly term: string, public readonly def: string) {}
+    }
+    const kimchi = new Word("Kimchi", "Korean Food");
+    kimchi.def = "xxx"; // not allowed
+    ```
+
 ## Any
 
 - Type checking으로부터 벗어나기 위해 사용하는 Type
