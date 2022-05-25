@@ -47,7 +47,8 @@
       "css": {
         "_posts": [
           "fundamentals",
-          "conflict_between_selectors"
+          "conflict_between_selectors",
+          "inheritance"
         ]
       }
     },
