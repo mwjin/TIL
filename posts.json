@@ -91,6 +91,7 @@
         "_posts": [
           "basic",
           "abstract_class",
+          "interface",
           "generic"
         ]
       }
