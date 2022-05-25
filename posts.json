@@ -46,7 +46,8 @@
       },
       "css": {
         "_posts": [
-          "fundamentals"
+          "fundamentals",
+          "conflict_between_selectors"
         ]
       }
     },
