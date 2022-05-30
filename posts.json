@@ -100,7 +100,8 @@
       },
       "project": {
         "_posts": [
-          "init"
+          "init",
+          "with_javascript"
         ]
       }
     },
