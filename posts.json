@@ -97,6 +97,11 @@
           "interface",
           "generic"
         ]
+      },
+      "project": {
+        "_posts": [
+          "init"
+        ]
       }
     },
     "mysql": {
