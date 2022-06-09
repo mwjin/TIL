@@ -317,3 +317,29 @@ console.log(result); // 3
 ```
 
 위에서 `obj2.add(1, 2)` 같은 function call expression도 실행되고 난 뒤 그 결과값이 할당된다.
+
+## Nullish Coalescing Operator (ES2020)
+
+```javascript
+const obj = { a: 1, b: 2, c: 3 };
+const d = obj.d ?? 10;
+console.log(d); // 10
+```
+
+- Short circuiting과 유사하게 `??` operator를 사용하면 _nullish가 아닌_ 첫 번째 value expression을 return 한다.
+- **Nullish**: `null` or `undefined`
+- 모두 nullish인 경우 맨 마지막 value expression이 return 된다.
+
+### OR Logical Operator와 비교
+
+```javascript
+const obj = { a: 1, b: 2, c: 3 };
+// const d = obj.d ? obj.d : 10;
+obj.d = 0;
+let d = obj.d || 10;
+console.log(d); // 10, which is not what we intended to
+d = obj.d ?? 10;
+console.log(d); // 0
+```
+
+`0`은 *falsy*이나 *nullish*는 아니다. 때문에 위와 같은 결과값 차이가 발생한다.
