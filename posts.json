@@ -60,7 +60,7 @@
           "type_conversion_and_coercion"
         ]
       },
-      "data_structures": {
+      "data_structures_and_operators": {
         "_posts": [
           "operators",
           "looping",

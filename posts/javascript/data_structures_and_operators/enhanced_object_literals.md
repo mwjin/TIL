@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Enhanced Object Literals
-parent: Data Structures
+parent: Data Structures and Operators
 grand_parent: Javascript
 nav_order: 3
 ---

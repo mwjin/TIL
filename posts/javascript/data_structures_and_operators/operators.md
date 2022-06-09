@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Operators
-parent: Data Structures
+parent: Data Structures and Operators
 grand_parent: Javascript
 nav_order: 1
 ---
