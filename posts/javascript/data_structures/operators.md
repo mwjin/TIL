@@ -343,3 +343,48 @@ console.log(d); // 0
 ```
 
 `0`은 *falsy*이나 *nullish*는 아니다. 때문에 위와 같은 결과값 차이가 발생한다.
+
+## Logical Assignment Operators (ES2021)
+
+다음과 같이 두 오브젝트가 정의되어 있다고 가정하자.
+
+```javascript
+const rest1 = {
+  name: "Capri",
+  numGuests: 20,
+};
+
+const rest2 = {
+  name: "La Pizza",
+  owner: "Giovanni Rossi",
+};
+```
+
+### OR assignment operator
+
+```javascript
+rest1.numGuests ||= 10; // rest1.numGuests = rest1.numGuests || 10;
+rest2.numGuests ||= 10; // rest2.numGuests = rest2.numGuests || 10;
+console.log(rest1.numGuests); // 20
+console.log(rest2.numGuests); // 10
+```
+
+### Nullish assignment operator
+
+```javascript
+rest1.numGuests ??= 10; // rest1.numGuests = rest1.numGuests ?? 10;
+rest2.numGuests ??= 10; // rest2.numGuests = rest2.numGuests ?? 10;
+console.log(rest1.numGuests); // 20
+console.log(rest2.numGuests); // 10
+```
+
+### AND assignment operator
+
+```javascript
+rest1.owner &&= "<ANONYMOUS>"; // nothing happened because the variable does not exist
+rest2.owner &&= "<ANONYMOUS>";
+console.log(rest1); // undefined
+console.log(rest2); // "<ANONYMOUS>"
+```
+
+위에서 `rest1.owner &&= "<ANONYMOUS>"`는 `rest1.owner = rest1.owner && "<ANONYMOUS>"`와 같지 않다. `rest1.owner` 가 존재하지 않는 경우 `&&=`는 아무런 동작을 수행하지 않는 반면, 후자는 `rest1.owner`가 `undefined`로 할당된다.
