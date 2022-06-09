@@ -71,7 +71,8 @@
           "passing_arguments",
           "first_class",
           "methods_of_functions",
-          "immediately_invoked_function_expression"
+          "immediately_invoked_function_expression",
+          "closures"
         ]
       }
     },
