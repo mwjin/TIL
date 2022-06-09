@@ -261,3 +261,59 @@ useRest("a", 1, 2, 3);
 const [h, ...o] = "apple";
 console.log(o); // ['p', 'p', 'l', 'e']
 ```
+
+## Short Circuiting
+
+### OR Logical Operator (||)
+
+```javascript
+console.log(3 || "minwoo"); // 3
+console.log(null || "minwoo"); // minwoo
+console.log(undefined || null); // null (even if it is falsy)
+console.log(undefined || 0 || "" || "Hello" || 23 || null); // Hello
+console.log(undefined || 0 || "" || null || undefined); // undefined
+```
+
+- **첫번째로 만난 truthy value expression을 return 한다.**
+- truthy value가 없는 경우 맨 마지막 value expression을 return 한다.
+
+#### Practical Example
+
+```javascript
+const obj = { a: 1, b: 2, c: 3 };
+// const d = obj.d ? obj.d : 10;
+const d = obj.d || 10;
+console.log(d); // 10
+```
+
+### AND Logical Operator (&&)
+
+```javascript
+console.log(0 && "Minwoo"); // 0
+console.log("Minwoo" && "Minho"); // Minho
+console.log("Hello" && 23 && null && "Jonas"); // null
+```
+
+- **첫번째로 만난 falsy value expression을 return 한다.**
+- Falsy value가 없는 경우 맨 마지막 value expression을 return 한다.
+
+#### Practical Example
+
+```javascript
+// practical example
+const obj2 = {
+  add: function (a, b) {
+    return a + b;
+  },
+};
+
+/*
+if (obj2.add) {
+  obj2.add(1, 2)
+}
+*/
+const result = obj2.add && obj2.add(1, 2);
+console.log(result); // 3
+```
+
+위에서 `obj2.add(1, 2)` 같은 function call expression도 실행되고 난 뒤 그 결과값이 할당된다.
