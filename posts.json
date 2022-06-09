@@ -63,7 +63,8 @@
       "data_structures": {
         "_posts": [
           "operators",
-          "looping"
+          "looping",
+          "enhanced_object_literals"
         ]
       },
       "function_advanced": {
