@@ -64,7 +64,8 @@
         "_posts": [
           "operators",
           "looping",
-          "enhanced_object_literals"
+          "enhanced_object_literals",
+          "sets"
         ]
       },
       "function_advanced": {
