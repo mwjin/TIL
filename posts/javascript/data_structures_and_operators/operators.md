@@ -388,3 +388,64 @@ console.log(rest2); // "<ANONYMOUS>"
 ```
 
 위에서 `rest1.owner &&= "<ANONYMOUS>"`는 `rest1.owner = rest1.owner && "<ANONYMOUS>"`와 같지 않다. `rest1.owner` 가 존재하지 않는 경우 `&&=`는 아무런 동작을 수행하지 않는 반면, 후자는 `rest1.owner`가 `undefined`로 할당된다.
+
+## Optional Chaining
+
+### Object
+
+위 `restaurant` object에서
+
+```javascript
+// console.log(restaurant.openingHours.mon.open); // Reference Error
+
+console.log(restaurant.openingHours.mon?.open); // undefined
+console.log(restaurant.openingHours.fri?.open); // 11
+```
+
+위와 같이 object 상 존재하지 않는 property (`mon`)에 접근할 때 **에러 대신 `undefined`를 return** 하도록 하고 싶은 경우 `?.`로 해당 object에 접근하면 된다. 복잡한 `if-else`문을 사용하지 않아도 된다는 장점이 있다.
+
+### Multiple Optional Chaining
+
+```javascript
+console.log(restaurant.openingHours?.mon?.open); // undefined
+```
+
+위와 같이 사용할 수 있다.
+
+### Access with Dynamic Property Keys
+
+```javascript
+const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? "closed"; // with dynamic property key
+  console.log(`On ${day}, we open at ${open}.`);
+}
+```
+
+Dynamic property key로 접근하고 싶을 때는 dot notation 대신 `[]`을 사용한다. 이 뒤에 `?.`를 붙여 optional chaining을 할 수 있다.
+
+### Method
+
+```javascript
+console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+console.log(restaurant.otherOrder?.(0, 1) ?? "Method does not exist"); // Method does not exist
+```
+
+Method 명 바로 뒤에 `?.(...args)` 와 같은 형태로 작성함으로써 optional 하게 호출할 수 있다. Method가 존재하지 않는 경우 `undefined`를 return 한다.
+
+### Array
+
+```javascript
+const users = [{ name: "Minwoo", email: "Hello@World.com" }];
+
+/*
+if (users.length > 0) console.log(users[0].name);
+else console.log('User array empty');
+*/
+
+console.log(users[0]?.name ?? "User array empty");
+console.log(users[1]?.name ?? "User array empty"); // User array empty
+```
+
+위와 같이 `[]` 뒤에 `?.`를 붙이는 식으로 사용할 수도 있다.
