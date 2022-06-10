@@ -65,7 +65,8 @@
           "operators",
           "looping",
           "enhanced_object_literals",
-          "sets"
+          "sets",
+          "maps"
         ]
       },
       "function_advanced": {
