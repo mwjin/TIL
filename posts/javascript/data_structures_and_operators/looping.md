@@ -8,8 +8,6 @@ nav_order: 2
 
 # Looping
 
-## Array
-
 다음과 같이 데이터가 정의되어 있다고 가정하자.
 
 ```javascript
@@ -41,6 +39,8 @@ const restaurant = {
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 ```
 
+## Array
+
 ### For-of Loop
 
 다음과 같이 간단하게 array 상에서 looping을 할 수 있다.
@@ -56,3 +56,48 @@ for (const [i, item] of menu.entries()) {
   console.log(`${i + 1}: ${item}`);
 }
 ```
+
+## Object
+
+### `Object.keys()`
+
+```javascript
+const properties = Object.keys(openingHours); // Array of the keys
+console.log(properties);
+```
+
+인자로 넣는 object의 property 들을 array 형태로 return 한다.
+
+```javascript
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of Object.keys(openingHours)) {
+  openStr += `${day}, `;
+  console.log(day);
+}
+console.log(openStr);
+```
+
+`for-of` loop와 혼용하여 사용 시 유용하다.
+
+### `Object.values()`
+
+```javascript
+const values = Object.values(openingHours);
+console.log(values);
+```
+
+인자로 넣는 object property value들을 array 형태로 return 한다.
+
+### `Object.entries()`
+
+```javascript
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}.`);
+}
+```
+
+위와 같이 key와 value를 동시에 가져오고 싶은 경우 `entries` 메소드를 사용한다. 인자로 넣는 object의 각 property에 대한 `[key, value]`들을 array 형태로 return 한다.
