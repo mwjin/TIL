@@ -68,7 +68,8 @@
           "sets",
           "maps",
           "string",
-          "array"
+          "array",
+          "foreach"
         ]
       },
       "function_advanced": {
