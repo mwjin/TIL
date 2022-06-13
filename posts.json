@@ -67,7 +67,8 @@
           "enhanced_object_literals",
           "sets",
           "maps",
-          "string"
+          "string",
+          "array"
         ]
       },
       "function_advanced": {
