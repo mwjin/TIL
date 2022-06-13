@@ -134,7 +134,7 @@ const newName = ["Mr.", , firstName, lastName.toUpperCase()].join(" ");
 console.log(newName); // Mr.  Minwoo JEONG
 ```
 
-### Capitalize Name
+## Capitalize Name
 
 ```javascript
 const capitalizeName = function (name) {
@@ -152,7 +152,7 @@ capitalizeName(passenger);
 capitalizeName("minwoo jeong");
 ```
 
-### Padding
+## Padding
 
 Target string의 길이가 지정한 길이만큼 될 때 까지 명시한 글자를 string의 앞 (`padStart`)또는 뒤(`padEnd`)에 padding 한다.
 
@@ -162,7 +162,7 @@ console.log(message.padStart(25, "+").padEnd(30, "+")); // pad '+' at the front 
 console.log("Minwoo".padStart(25, "+").padEnd(30, "+"));
 ```
 
-### Repeat
+## Repeat
 
 `repeat(n)` 메소드는 target string을 `n`번 반복한 string을 return 한다.
 
