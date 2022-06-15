@@ -94,3 +94,86 @@ const arr = [23, 11, 54];
 console.log(arr.at(0)); // 23 (equal to arr[0])
 console.log(arr.at(-1)); // 54 (equal to arr[arr.length - 1])
 ```
+
+## `map(callbackfn)`
+
+### Explain
+
+- 한 array를 바탕으로 또 다른 array를 만들고자 할 때 사용하는 method
+- 인자로 넣은 `callbackfn`을 바탕으로 각 element로부터 새로운 element를 계산한다.
+- 새로운 array는 위에서 생성된 새로운 element들로 구성된 array이다.
+
+```javascript
+const arr = [3, 1, 4, 3, 2];
+console.log(arr.map((v) => v * 2)); // [6, 2, 8, 6, 2]
+```
+
+### Callback Function
+
+Callback function은 다음과 같은 형태를 가질 수 있다.
+
+```javascript
+function (value, i, arr) {
+  ...
+}
+```
+
+각 인자에 대한 설명은 다음과 같다.
+
+- `value`: Current element
+- `i`: Current index of the element
+- `arr`: Current array
+
+`i`, `arr`가 필요하지 않은 경우 `value`만 받는 형태의 callback function을 사용한다.
+
+### vs. `forEach`
+
+- `map`의 callback function 은 새로운 array를 생성하기 위한 value를 return 한다.
+- `forEach`는 새로운 array를 생성하기 위한 용도가 아니다. 단, callback function으로 각 element를 print하는 등의 동작을 수행할 수 있으며 이를 *side effect*라고 한다.
+
+## `filter(callbackfn)`
+
+- 기존 array의 각 element들에 대해 callback function을 수행 시, `true`인 element들만 포함하여 새로운 array를 만든다.
+- `callbackfn`의 형태는 `map`의 callback function과 동일하다.
+
+```javascript
+const arr = [3, 1, 4, 3, 2];
+console.log(arr.filter((v) => v > 2)); // [3, 4, 3]
+```
+
+## `reduce(callbackfn, [initial value])`
+
+### Explain
+
+- Array로부터 callback function을 바탕으로 single value를 만든다.
+- Callback function의 인자로 *accumulator*가 들어가는데, `initial value`는 이에 대한 초기값이다.
+- Callback function은 이 accumulator와 array 상의 각 element 간의 연산들로 구성되어 있다.
+
+```javascript
+const arr = [3, 1, 4, 3, 2];
+console.log(arr.reduce((acc, v) => acc + v, 0)); // 13
+```
+
+### Callback Function
+
+Callback function은 다음과 같은 형태를 가질 수 있다.
+
+```javascript
+function (acc, value, i, arr) {
+  ...
+}
+```
+
+- `acc`: *Accumulator*로, 이 callback function의 return 값은 이 accumulator에 누적된다.
+- 그 외의 인자에 대한 설명은 `map`과 같다.
+- `i`와 `arr`는 callback function을 정의하여 사용할 수 있다.
+
+### Initial Value
+
+`reduce`의 두 번째 인자로 들어가는 initial value는 위 callback function의 `acc`에 대한 초기값이다.
+
+### Example: Get the maximum value
+
+```javascript
+const maxValue = arr.reduce((acc, value) => Math.max(acc, value), arr[0]);
+```
