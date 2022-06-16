@@ -177,3 +177,98 @@ function (acc, value, i, arr) {
 ```javascript
 const maxValue = arr.reduce((acc, value) => Math.max(acc, value), arr[0]);
 ```
+
+## `find(callbackfn)`
+
+- Array 상에서 `callbackfn`에 명시된 condition을 충족하는 _첫번째_ element를 찾아준다.
+- 없으면 `undefined`를 return한다.
+- `filter`는 condition을 충족하는 element들을 모아 새로운 array를 만든다면, `find`는 single value를 return 한다는 차이가 있다.
+- `callbackfn`의 형태는 `map`의 callback function과 동일하다.
+
+```javascript
+const account = accounts.find((acc) => acc.owner === "Jessica Davis");
+console.log(account);
+```
+
+## `findIndex(callbackfn)`
+
+- Array 상에서 `callbackfn`에 명시된 condition을 충족하는 _첫번째_ element의 index를 return한다.
+- 없으면 `-1`을 return한다.
+- `indexOf`는 value를 인자로 받는 반면, `findIndex`는 찾는 value의 condition을 명시한다는 차이가 있다.
+- `callbackfn`의 형태는 `map`의 callback function과 동일하다.
+
+```javascript
+const accountIdx = accounts.find((acc) => acc.owner === "Jessica Davis");
+console.log(accounts[accountIdx]);
+```
+
+## `some(callbackfn)`
+
+- Array에서 어느 한 element라도 `callbackfn`으로 명시된 조건을 만족하면 `true`를 `return`한다.
+- `includes` method는 value를 인자로 받는 반면, `some`은 조건을 인자로 받는다는 차이가 있다.
+- `callbackfn`의 형태는 `map`의 callback function과 동일하다.
+
+```javascript
+const anyDeposits = movements.some((mov) => mov > 0);
+console.log(anyDeposits);
+
+// the below statements are the same
+console.log(movements.includes(-130));
+console.log(movements.some((mov) => mov === -130));
+```
+
+## `every(callbackfn)`
+
+- Array 상 모든 element가 `callbackfn`으로 주어진 조건을 만족하는 경우 `true`
+- `callbackfn`의 형태는 `map`의 callback function과 동일하다.
+
+```javascript
+console.log(movements.every((mov) => mov > 0)); // false
+console.log(movements.every((mov) => mov !== 0)); // true
+```
+
+## `flat([depth])`
+
+### Explain
+
+Nested array를 평평하게 만든다.
+
+```javascript
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat()); // [1, 2, 3, 4, 5, 6, 7, 8]
+```
+
+Default로 깊이 1까지만 평평하게 만들며, 1 이상의 깊이에 있는 element들 또한 꺼내고 싶다면 `depth`에 원하는 깊이를 인자로 넘겨줘야 한다.
+
+```javascript
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat()); // [Array(2), 3, 4, Array(2), 7, 8]
+
+// two levels deep
+console.log(arrDeep.flat(2)); // [1, 2, 3, 4, 5, 6, 7, 8]
+```
+
+### Practical Example
+
+주로 다음과 같이 `map` 과 함께 사용한다.
+
+```javascript
+const overallBalance = accounts
+  .map((account) => account.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+```
+
+## `flatMap()`
+
+- 위 **practical example**처럼 `map` 다음 `flat`을 chaining으로 사용하는 패턴이 흔하여 아예 이 둘을 합친 `flatMap()` 메소드가 정의되었다.
+- _깊이 1까지_ 밖에 못하는 것에 유의하자.
+
+```javascript
+// flatMap (map + flat)
+const overallBalance2 = accounts
+  .flatMap((account) => account.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
+```
