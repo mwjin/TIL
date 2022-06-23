@@ -313,3 +313,85 @@ console.log(arr.sort((a, b) => a - b));
 // Descending order: [3, 2, 1, 0, -2, -4]
 console.log(arr.sort((a, b) => b - a));
 ```
+
+## Programmatically constructing arrays
+
+### Constructing arrays based on the array that already defined
+
+`new Array(...)`구문을 이용하여 기존 정의된 array로부터 새로운 array를 정의할 수 있다.
+
+```javascript
+const arr = [1, 2, 3, 4, 5];
+const newArr = new Array(arr);
+```
+
+### Filling empty arrays
+
+#### Create an empty array
+
+`new Array(n)`을 이용하면 다음과 같이 size가 `n`인 empty array 생성이 가능하다. 단 empty array로는 `map`을 사용할 수 없다.
+
+```javascript
+const x = new Array(7);
+console.log(x); // [empty * 7]
+console.log(x[0]); // undefined
+console.log(x.map(() => 5)); // [empty * 7] (The map method does not work)
+```
+
+#### `fill(...)` method
+
+- Empty array는 `fill` method로 empty array의 내용물을 채울 수 있다.
+- 3개의 argument가 올 수 있으며 이에 대한 설명은 다음과 같다.
+  - _Value_: Array에 채우고자 할 value
+  - _Start_: 채우기 시작할 index
+  - _End_: 채우기를 멈출 index로, 해당 index 자리에는 값이 채워지지 않는다.
+- _기존 array의 내용을 변경함에 유의_
+
+```javascript
+const x = new Array(7);
+x.fill(1);
+console.log(x); // [1, 1, 1, 1, 1, 1, 1]
+
+const y = new Array(7);
+y.fill(23, 2, 4);
+console.log(y); // [empty × 2, 23, 23, empty × 3]
+
+const z = new Array(7);
+y.fill(23, 2);
+console.log(y); // [empty × 2, 23, 23, 23, 23, 23, 23]
+```
+
+### `Array.from(Iterable, [callbackfn])`
+
+#### Explain
+
+- `Iterable` 한 객체 (`String`, `Map`, `Set` 등) 또는 object로부터 array를 새로 생성한다.
+- `callbackfn`의 형태는 `map`과 같으며 생략 가능하다.
+- `{length: n}` 과 같은 object가 첫 번째 인자로 올 수 있으며, 이 때의 동작은 `new Array(n)`과 흡사하다.
+
+```javascript
+const arr1 = Array.from({ length: 7 }, () => 1);
+console.log(arr1); // [1, 1, 1, 1, 1, 1, 1]
+
+const arr2 = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(arr2); // [1, 2, 3, 4, 5, 6, 7]
+
+const arr3 = Array.from({ length: 7 });
+console.log(arr3); // [undefined, undefined, ...]
+
+const arr4 = Array.from({ a: 1 });
+console.log(arr4); // []
+```
+
+#### Practical Example
+
+`document.querySelectorAll(...)`은 `NodeList`라는 iterable을 반환하며, 이를 array로 변환할 때 `Array.from(...)`을 이용할 수 있다.
+
+```javascript
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+  console.log(document.querySelectorAll('.movements__value'));
+  console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
+```
