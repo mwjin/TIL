@@ -272,3 +272,44 @@ const overallBalance2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance2);
 ```
+
+## `sort([callbackfn])`
+
+### Explain
+
+- Array 내부 구성 요소들을 정렬하기 위해 사용하는 method로
+- 새로운 array를 return 하는 것이 아닌 *기존 array 내용 자체를 변경*하는 동작임에 유의하자.
+
+```javascript
+const owners = ["Minwoo", "Jonas", "Adam", "Zck"];
+console.log(owners.sort()); // ['Adam', 'Jonas', 'Minwoo', 'Zck']Mutate the original array
+console.log(owners); // ['Adam', 'Jonas', 'Minwoo', 'Zck']
+```
+
+### Sorting based on strings
+
+- `sort` method 자체가 기본적으로 구성 요소들을 string이라고 가정하고 sorting 한다.
+- String이 아니라도 string으로 conversion 된 결과를 바탕으로 sorting 한다.
+- Sorting을 위한 key function이 `String(...)`이라 생각하자.
+
+```javascript
+const arr = [-2, -1, 0, 1, 2];
+console.log(arr.sort()); // [-1, -2, 0, 1, 2]
+```
+
+### Sorting based on numbers
+
+- String 기반이 아닌 number 자체를 기반으로 sorting 하려면 별도의 callback 함수를 정의해야 한다.
+- Callback 함수는 `(a, b) => ....` 와 같이 두 개의 인자로 정의할 수 있으며, `a`, `b`는 array를 구성하고 있는 연속적인 두 구성 요소들이다.
+- Callback function의 결과가 음수이면 순서를 유지하고, 양수이면 순서를 바꾼다.
+- 따라서 다음과 같이 sorting 할 수 있다.
+
+```javascript
+const arr = [1, -4, 3, 2, -2, 0];
+
+// Ascending order: [-4, -2, 0, 1, 2, 3]
+console.log(arr.sort((a, b) => a - b));
+
+// Descending order: [3, 2, 1, 0, -2, -4]
+console.log(arr.sort((a, b) => b - a));
+```
